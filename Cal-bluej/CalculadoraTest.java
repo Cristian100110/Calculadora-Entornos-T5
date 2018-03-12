@@ -13,6 +13,7 @@ import org.junit.Test;
  */
 public class CalculadoraTest
 {
+    Calculadora cal;
     /**
      * Default constructor for test class CalculadoraTest
      */
@@ -28,6 +29,7 @@ public class CalculadoraTest
     @Before
     public void setUp()
     {
+        cal = new Calculadora();
     }
 
     /**
@@ -39,4 +41,20 @@ public class CalculadoraTest
     public void tearDown()
     {
     }
+
+    @Test
+    public void SUUUUUUUUUUUUUKA()
+    {
+        Calculadora suuuuka_unicorns = new Calculadora();
+        suuuuka_unicorns.ponOperacion("");
+    }
+    
+    @Test
+    public void testSUMAi0()
+    {
+        cal.ponNum1(1);
+        cal.ponNum2(Integer.MAX_VALUE);
+        cal.dameResultado();
+    }
 }
+

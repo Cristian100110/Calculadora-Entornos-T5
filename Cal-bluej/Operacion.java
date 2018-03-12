@@ -7,6 +7,8 @@
  */
 public enum Operacion
 {
-    SUMA,RESTA,MULTIPLICA,DIVIDE
+    //potencias, raíces, logaritmos y factoriales
+    SUMA,SUMAd,RESTA,RESTAd,MULTIPLICA,MULTIPLICAd,DIVIDE,DIVIDEd,
+    SQRT,nROOT,LOG, nLOG,FACTORIAL
 
 }
