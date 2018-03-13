@@ -15,10 +15,15 @@ public class Calculadora
     private double dob1, dob2;
     private Integer    rdo;
     private Double drdo;
+    private String srdo;
+    private String errah;
+    /*
     private char co, mander, meleon, izard, latan, cuteria;
     private int ermedio, erceptar, eresante, olerable, erpretar, rinseco, ratable, erminable, 
-                ruso, romision, erceptado, ecepcion, ro, egral, achable, ernos/*, las demas te
-                las buscas tu!!! >.<*/;
+                ruso, romision, erceptado, ecepcion, ro, egral, achable, ernos
+                ///, las demas te las buscas tu!!! >.
+                ;
+    */
     private Operacion op;
 
     /**
@@ -39,22 +44,22 @@ public class Calculadora
     {
         // put your code here
         this.num1=n1;
+        this.dob1=(double) n1;
     }
-    
-    public void ponNum2(int n2)
-    {
-        // put your code here
-        this.num2=n2;
-    }
-    
-    public void ponDob1(double d1)
+    public void /*ponDob1*/ponNum1(double d1)
     {
         // put your code here
         this.dob1=d1;
         this.num1=(int)d1;
     }
     
-    public void ponDob2(double d2)
+    public void ponNum2(int n2)
+    {
+        // put your code here
+        this.num2=n2;
+        this.dob2=(double) n2;
+    }
+    public void /*ponDob2*/ponNum2(double d2)
     {
         // put your code here
         this.dob2=d2;
@@ -65,49 +70,56 @@ public class Calculadora
     {
         switch(op){
             case SUMA:
-                rdo=num1+num2;
+                drdo=suma(dob1,dob2);
                 break;
             case RESTA:
-                rdo=num1-num2;
+                drdo=resta(dob1,dob2);
                 break;
             case MULTIPLICA:
-                rdo=num1*num2;
-                multiplicacion(dob1,dob2);
+                //rdo=num1*num2;
+                drdo=multiplicacion(dob1,dob2);
                 break;
             case DIVIDE:
-                rdo=num1/num2;
+                //rdo=num1/num2;
+                drdo=divide(dob1,dob2);
                 break;
-            case SUMAd:
-                drdo=dob1+dob2;
-                rdo=num1+num2;
+            case SUMAi:
+                rdo=suma(num1,num2);
+                drdo=(double)rdo;
                 break;
-            case RESTAd:
-                drdo=dob1-dob2;
-                rdo=num1-num2;
+            case RESTAi:
+                rdo=resta(num1,num2);
+                drdo=(double)rdo;
                 break;
-            case MULTIPLICAd:
-                drdo=dob1*dob2;
-                rdo=num1*num2;
+            case MULTIPLICAi:
+                rdo=multiplicacion(num1,num2);
+                drdo=(double)rdo;
                 break;
-            case DIVIDEd:
-                drdo=dob1/dob2;
-                rdo=num1/num2;
+            case DIVIDEi:
+                rdo=divide(num1,num2);
+                drdo=(double)rdo;
                 break;
             case SQRT:
-                drdo=Math.sqrt(dob1);
+                //drdo=Math.sqrt(dob1);
+                drdo=this.Sqrt(dob1);
                 break;
             case nROOT:
                 //drdo=Math.pow(Math.E, Math.log(dob1)/dob2);
-                drdo=Math.pow(Math.exp (1/dob2),Math.log(dob1));
+                //drdo=Math.pow(Math.exp (1/dob2),Math.log(dob1));
+                drdo=nroot(dob1,dob2);
                 break;
             case LOG:
-                drdo=Math.log(dob1);
+                drdo=Math.log10(dob1);
                 break;
             case nLOG:
                 drdo=(Math.log(dob1) / Math.log(dob2));
                 break;
+            case LN:
+                drdo=ln(dob1);
+                break;
             case FACTORIAL:
                 rdo=factorial(num1);
+                drdo=(double)rdo;
                 break;
             default:
                 System.err.println("error: operacion malpuesta ");
@@ -129,17 +141,17 @@ public class Calculadora
             case "DIVIDE":
                 op=op.DIVIDE;
                 break;
-            case "SUMAd":
-                op=op.SUMAd;
+            case "SUMAi":
+                op=op.SUMAi;
                 break;
-            case "RESTAd":
-                op=op.RESTAd;
+            case "RESTAi":
+                op=op.RESTAi;
                 break;
-            case "MULTIPLICAd":
-                op=op.MULTIPLICAd;
+            case "MULTIPLICAi":
+                op=op.MULTIPLICAi;
                 break;
-            case "DIVIDEd":
-                op=op.DIVIDEd;
+            case "DIVIDEi":
+                op=op.DIVIDEi;
                 break;
             case "SQRT":
                 op=op.SQRT;
@@ -153,6 +165,9 @@ public class Calculadora
             case "nLOG":
                 op=op.nLOG;
                 break;
+            case "LN":
+                op=op.LN;
+                break;
             case "FACTORIAL":
                 op=op.FACTORIAL;
                 break;
@@ -164,47 +179,73 @@ public class Calculadora
     
     private int suma(int a, int b)
     {
-    	/*
-        this.num1=a;
-        this.num2=b;
-        op=op.SUMA;
-        rdo=a+b;
-        */
-        return a+b;
+        errah="";
+        int num;
+        num=a+b;
+        if(a>0 && b>0 && num<0 )
+            errah="Infinity (result out of range)";
+        if(a<0 && b<0 && num>0 )
+            errah="-Infinity (result out of range)";
+        return num;
+    }
+    private double suma(double a, double b)
+    {
+        errah="";
+        double num;
+        num=a+b;
+        if(a>0 && b>0 && num<0 )
+            errah="Infinity (result out of range)";
+        if(a<0 && b<0 && num>0 )
+            errah="-Infinity (result out of range)";
+        return num;
     }
     
     private int resta(int a, int b)
+    {/*
+        errah="";
+        return suma(a,-b);*/
+        errah="";
+        int num;
+        num=a-b;
+        if(a>0 && b<0 && num<0 )
+            errah="Infinity (result out of range)";
+        if(a<0 && b>0 && num>0 )
+            errah="-Infinity (result out of range)";
+        return num;
+    }
+    private double resta(double a, double b)
     {
-    	/*
-        suma(a,-b);
-        this.num2=b;
-        op=op.RESTA;
-        rdo=suma(a,-b);
-        */
+        errah="";
         return suma(a,-b);
     }
     
     private double multiplicacion(double a, double b)
     {
-    	/*
-        op=op.MULTIPLICA;
-        this.dob1=a;
-        this.dob2=b;
-        this.num1=(int) a;
-        this.num2=(int) b;
-        drdo = this.dob1 * this.dob2;
-        rdo = this.num1 * this.num2; 
-        */
-        return this.dob1 * this.dob2;
+        errah="";
+        double num;
+        num=a*b;
+        if(a>0 && b>0 && num<0 )
+            errah="Infinity (result out of range)";
+        if((a<0 && b>0 || a>0 && b<0) && num>0 )
+            errah="-Infinity (result out of range)";
+        return num;
     }
     private int multiplicacion(int a, int b)
     {
-    	return this.num1 * this.num2;
+        errah="";
+        int num;
+        num=a*b;
+        if(a>0 && b>0 && num<0 )
+            errah="Infinity (result out of range)";
+        if((a<0 && b>0 || a>0 && b<0) && num>0 )
+            errah="-Infinity (result out of range)";
+        return num;
     }
     
     private double divide(double a, double b)
     {
-    	/*
+        errah="";
+        /*
         op=op.DIVIDE;
         this.dob1=a;
         this.dob2=b;
@@ -217,59 +258,89 @@ public class Calculadora
     }
     private int divide(int a, int b)
     {
-    	return this.num1 / this.num2;
+        errah="";
+        return this.num1 / this.num2;
     }
     
-    private double sqrt(double a)
+    private double Sqrt(double a)
     {
-    	if(dob1<0)
-    	{
-    		System.err.println("error: Actualmente no soportamos numeros no reales, sorry");
-    	}else{
-    		return Math.sqrt(dob1);
-    	}
-    	return -1;
+        errah="";
+        if(dob1<0)
+        {
+            System.err.println("error: Actualmente no soportamos numeros no reales, sorry");
+            errah="Operacion no soportada";
+        }else{
+            return Math.sqrt(dob1);
+        }
+        return -1;
     }
     
     private double nroot(double radicando, double indice)
     {
-    	return Math.pow(Math.exp (1/dob2),Math.log(dob1));
+        errah="";
+        
+        return Math.pow(Math.exp (1/dob2),Math.log(dob1));
     }
     
     private double log(double a)
     {
-    	return Math.log(dob1);
+        errah="";
+        return Math.log(dob1);
     }
     
     private double nlog(double a, double base)
     {
-		return (Math.log(dob1) / Math.log(dob2));
+        errah="";
+        return (Math.log(dob1) / Math.log(dob2));
     }
     
-    /*
-    private int factorial(int num)
+    private double ln(double a)
     {
-        int factorial;
-        int numero =num;
-        while ( numero!=0) {
-          factorial=factorial*numero;
-          numero--;
-        }
-        return factorial;
+        errah="";
+        return (Math.log(dob1) / Math.log(Math.E));
     }
-    */
-    public int factorial (int numero) {
+
+    private int factorial (int numero) {
+        errah="";
         if (numero==0)
             return 1;
         else
             return numero * factorial(numero-1);
     }
         
-    public int dameResultado()
+    private void does_errah_ocurred()
+    {
+        if (errah != "")
+        {
+            srdo=errah;
+        }else{
+            if(hasdecimals(drdo))
+                srdo=String.valueOf(drdo);
+            else{
+                rdo=(int) drdo.intValue();
+                srdo=String.valueOf(rdo);
+            }
+        }
+    }
+    private Boolean hasdecimals(double d)
+    {
+        Boolean a;
+        if(d % 1 == 0)
+        {
+            a = false;
+        }
+        else
+        {
+            a = true;
+        }
+        return a;
+    }
+    public String /*int*/ dameResultado()
     {
         // put your code here
-        
-        return rdo;
+        does_errah_ocurred();
+        //return rdo;
+        return srdo;
     }
     public double dameResultadod()
     {
