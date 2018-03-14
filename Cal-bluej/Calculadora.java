@@ -272,7 +272,8 @@ public class Calculadora
         }else{
             return Math.sqrt(dob1);
         }
-        return -1;
+        //return -1;
+        return Math.sqrt(dob1);
     }
     
     private double nroot(double radicando, double indice)

@@ -43,16 +43,9 @@ public class CalculadoraTest
     @After
     public void tearDown()
     {
+        cal=null;
     }
 
-    /*
-    @Test
-    public void SUUUUUUUUUUUUUKA()
-    {
-        Calculadora suuuuka_unicorns = new Calculadora();
-        suuuuka_unicorns.ponOperacion("");
-    }*/
-    
     @Test
     public void testSUMAi0()
     {
@@ -137,12 +130,29 @@ public class CalculadoraTest
     public void testSqrt0()
     {
         cal.ponNum1(16);
-        cal.ponOperacion("nROOT");
+        cal.ponOperacion("SQRT");
         cal.opera();
         assertEquals(4,cal.dameResultadod(),DELTA);
         assertEquals("4",cal.dameResultado());
     }
     @Test
+    public void testSqrt1()
+    {
+        cal.ponNum1(0);
+        cal.ponOperacion("SQRT");
+        cal.opera();
+        assertEquals(0,cal.dameResultadod(),DELTA);
+        assertEquals("0",cal.dameResultado());
+    }
+    @Test
+    public void testSqrt2()
+    {
+        cal.ponNum1(-16);
+        cal.ponOperacion("SQRT");
+        cal.opera();
+        assertEquals(Math.sqrt(-16),cal.dameResultadod(),DELTA);
+        assertEquals("Operacion no soportada",cal.dameResultado());
+    }
     public void testnRoot0()
     {
         cal.ponNum1(16);
